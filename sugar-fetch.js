@@ -46,13 +46,13 @@ const sfApi = {
     }
   },
   post: (url, json, form) => {
+    const body = form && sfApi.form(form) || JSON.stringify(json);
     return fetch(url, {method: 'POST', credentials: 'same-origin',
-                       body: form && sfApi.form(form) || JSON.stringify(json);
-    }).then(sfApi.process);
+                       body: body}).then(sfApi.process);
   },
   get: (url, params) => (
     fetch(`${url}?${sfApi.params(params)}`,
-          {credentials:'same-origin'}).then(sfApi.process);
+          {credentials:'same-origin'}).then(sfApi.process)
   )
 }
 
