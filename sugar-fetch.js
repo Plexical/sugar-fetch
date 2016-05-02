@@ -56,4 +56,8 @@ const sfApi = {
   )
 }
 
-module.exports = sfApi;
+if(typeof(module) !== 'undefined' && module.exports) { // browser temp..
+  module.exports = sfApi;
+} else {
+  window.__sugar_fetch__ = sfApi;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temporary Add Hoc Tests</title>
+    <script src="sugar-fetch.js"></script>
+    <script>
+      "use strict";
+
+      function ad_hoc_tests() {
+        const sfApi = window.__sugar_fetch__;
+        sfApi.post('http://httpbin.org/post', {foo: 'bar'})
+             .then ((data) => {
+               console.log('JSON echo', data.json);
+             })
+        sfApi.get('http://httpbin.org/get', {foo: 'bar'})
+             .then ((data) => {
+               console.log('GET JSON Echo', data.args);
+             });
+      }
+    </script>
+  </head>
+
+  <body onload="ad_hoc_tests()">
+    ??
+  </body>
+</html>
