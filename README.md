@@ -33,14 +33,14 @@ load it in environments without support for that (e.g. Safari), you
 will need to put it behind a transpiling pipeline like
 [Babel](https://babeljs.io/). It can be loaded in Node.js, but at the
 time of writing (2016-05-09) you will need the
-`--harmony_destructuring` flag (see an example how the the test suite
+`--harmony_destructuring` flag (see an example how the test suite
 is invoked, [here](package.json)).
 
 The object `sfApi` has three important methods:
 
 ### .get()
 
-The `.get()` method takes an URL and an object describing the desired
+The `.get()` method takes a URL and an object describing the desired
 URL parameters (as encoded by
 [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)).
 
