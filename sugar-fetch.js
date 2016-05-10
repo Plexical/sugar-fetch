@@ -17,8 +17,10 @@ const sfApi = {
   },
   headers: (res) => {
     let headObj = {};
-    for(let [name, val] of res.headers) {
-      headObj[name] = val;
+    if(res.headers) {
+      for(let [name, val] of res.headers) {
+        headObj[name] = val;
+      }
     }
     return headObj;
   },
@@ -37,12 +39,10 @@ const sfApi = {
   },
   process: (res) => {
     const mime = sfApi.headers(res)['content-type'];
-    if(res.ok && mime) {
-      return sfApi.mimeReader(res, mime).call(res);
-    } else if(res.ok) {
-      return res.text();
+    if(res.ok) {
+      return mime && sfApi.mimeReader(res, mime).call() || res.text();
     } else {
-      throw new Error(`Fetch of ${url} failed with ${res.status}`);
+      throw new Error(`Fetch of ${res.url} failed with ${res.status}`);
     }
   },
   post: (url, object) => (
