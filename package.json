@@ -1,6 +1,6 @@
 {
   "name": "sugar-fetch",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A little convenience for many fetch() use cases",
   "main": "sugar-fetch.js",
   "scripts": {
