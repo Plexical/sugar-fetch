@@ -33,7 +33,7 @@ describe ("Fetching", () => {
     }
   }
   
-  describe("Using the .post() method", () => {
+  describe("Fetching using the POST method", () => {
     describe("Sending payload as JSON", () => {
       beforeEach(() => {
         sfApi.post('/fake-json-endpoint', {foo: 'bar'});
@@ -52,7 +52,7 @@ describe ("Fetching", () => {
       let fdRestore;
       beforeEach(() => {
         fdRestore = change(global, {FormData: Appender});
-        sfApi.post('/fake-form-endpoint', null, {foo: 'bar'});
+        sfApi.submit('/fake-form-endpoint', {foo: 'bar'});
       });
       afterEach(() => {
         fdRestore();

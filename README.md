@@ -36,7 +36,7 @@ time of writing (2016-05-09) you will need the
 `--harmony_destructuring` flag (see an example how the the test suite
 is invoked, [here](package.json)).
 
-The object `sfApi` has two important methods:
+The object `sfApi` has three important methods:
 
 ### .get()
 
@@ -49,21 +49,26 @@ Example:
     > sfApi.get('/foo/bar', {foo: 'bar'})
     // Would request the URI at /foo/bar?foo=bar
 
-### .post()
+### .post(), sending POST data as JSON
 
 The other method, `.post()`, will call `fetch()` using a `POST`
-request. You can either supply an object to be converted to `JSON`
-posted to your endpoint in the *first* parameter or FORM data as the
-*second* parameter (encoded using
-[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)).
+request. You supply an object as parameter that will be serialized as
+`JSON` posted to the endpoint.
 
-JSON example:
+Example:
 
     > sfApi.post('/post/endpoint', {foo: 'bar'})
     // Would POST to `/post/endpoint` with JSON serialized object
     // `{foo: 'bar'}`
 
-Form example:
+### .submit(), sending POST data as a form
 
-    > sfApi.post('/post/form', null, {foo: 'bar'})
+The third method, `.submit()` will call `fetch()` using a `POST`
+request too, but the parameter object will be converted to form data
+(encoded using
+[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)).
+
+Example:
+
+    > sfApi.submit('/post/form', null, {foo: 'bar'})
     // Would POST to the endpoint with the FORM data {foo: 'bar'}

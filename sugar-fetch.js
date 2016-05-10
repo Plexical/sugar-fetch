@@ -45,11 +45,14 @@ const sfApi = {
       throw new Error(`Fetch of ${url} failed with ${res.status}`);
     }
   },
-  post: (url, json, form) => {
-    const body = form && sfApi.form(form) || JSON.stringify(json);
-    return fetch(url, {method: 'POST', credentials: 'same-origin',
-                       body: body}).then(sfApi.process);
-  },
+  post: (url, object) => (
+    fetch(url, {method: 'POST', credentials: 'same-origin',
+                body: JSON.stringify(object)}).then(sfApi.process)
+  ),
+  submit: (url, formOb) => (
+    fetch(url, {method: 'POST', credentials: 'same-origin',
+                body: sfApi.form(formOb)}).then(sfApi.process)
+  ),
   get: (url, params) => (
     fetch(`${url}?${sfApi.params(params)}`,
           {credentials:'same-origin'}).then(sfApi.process)
