@@ -40,7 +40,7 @@ const sfApi = {
   process: (res) => {
     const mime = sfApi.headers(res)['content-type'];
     if(res.ok) {
-      return mime && sfApi.mimeReader(res, mime).call() || res.text();
+      return mime ? sfApi.mimeReader(res, mime).call(res) : res.text();
     } else {
       throw new Error(`Fetch of ${res.url} failed with ${res.status}`);
     }
