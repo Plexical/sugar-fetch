@@ -70,5 +70,5 @@ request too, but the parameter object will be converted to form data
 
 Example:
 
-    > sfApi.submit('/post/form', null, {foo: 'bar'})
+    > sfApi.submit('/post/form', {foo: 'bar'})
     // Would POST to the endpoint with the FORM data {foo: 'bar'}
